@@ -1,0 +1,184 @@
+#VRML_SIM R2020a utf8
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.50638403363943 -0.7399740258956694 -0.4427342899243471 1.9118239371134276
+  position -0.28768417807124913 1.1244097588764361 0.1515982725694789
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  translation 0.15 -0.04 0
+  floorSize 5 5
+}
+Robot {
+  translation 0.199996 0.199725 0.18
+  rotation 0 0 0.9999999999999999 0
+  children [
+    DEF Body Shape {
+      appearance PBRAppearance {
+        baseColor 0.8 0 0.4
+      }
+      geometry Box {
+        size 0.1 0.05 0.2
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position -4.876657726526901e-07
+      }
+      device [
+        RotationalMotor {
+          name "wheel1"
+        }
+      ]
+      endPoint DEF wheel1 Solid {
+        translation 0.059999999999999984 0 0.04999999999999999
+        rotation 0 -3.7448835029196633e-23 1 1.5700000000000005
+        children [
+          DEF Wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.02
+              radius 0.04
+            }
+          }
+        ]
+        boundingObject USE Wheel
+        physics DEF wheel_ph Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position -4.904805296470457e-07
+      }
+      device [
+        RotationalMotor {
+          name "wheel2"
+        }
+      ]
+      endPoint DEF wheel2 Solid {
+        translation -0.05999999999999988 2.4524026482351266e-08 0.049999999999993924
+        rotation -2.4543563401676596e-07 2.4524026482351306e-07 0.9999999999999397 1.5700000000000602
+        children [
+          DEF Wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.02
+              radius 0.04
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE Wheel
+        physics USE wheel_ph
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 4.876657674097136e-07
+      }
+      device [
+        RotationalMotor {
+          name "wheel3"
+        }
+      ]
+      endPoint DEF wheel3 Solid {
+        translation 0.05999999999999985 2.4383288370484664e-08 -0.049999999999993924
+        rotation 2.440271317163308e-07 -2.4383288370484704e-07 0.9999999999999404 1.57000000000006
+        children [
+          DEF Wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.02
+              radius 0.04
+            }
+          }
+        ]
+        name "solid(2)"
+        boundingObject USE Wheel
+        physics USE wheel_ph
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 4.904805231165986e-07
+      }
+      device [
+        RotationalMotor {
+          name "wheel4"
+        }
+      ]
+      endPoint DEF wheel4 Solid {
+        translation -0.05999999999999988 2.4524026155828923e-08 -0.049999999999993924
+        rotation 2.4543563074894074e-07 -2.452402615582895e-07 0.9999999999999397 1.5700000000000602
+        children [
+          DEF Wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.02
+              radius 0.04
+            }
+          }
+        ]
+        name "solid(3)"
+        boundingObject USE Wheel
+        physics USE wheel_ph
+      }
+    }
+    DistanceSensor {
+      translation 0.02 0 0.1
+      rotation 0 1 0 -1.27
+      children [
+        DEF Sensor Shape {
+          appearance PBRAppearance {
+            baseColor 0 1 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "ds_left"
+      boundingObject USE Sensor
+      physics Physics {
+      }
+    }
+    DistanceSensor {
+      translation -0.02 0 0.1
+      rotation 0 1 0 -1.87
+      children [
+        DEF Sensor Shape {
+          appearance PBRAppearance {
+            baseColor 0 1 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "ds_right"
+      boundingObject USE Sensor
+      physics Physics {
+      }
+    }
+  ]
+  boundingObject USE Body
+  physics Physics {
+    mass 1
+  }
+  controller "obs_avd"
+}
